@@ -27,6 +27,7 @@
 
 <script>
   import wepy from 'wepy'
+  import cards from '../cards'
 
   export default class Index extends wepy.page {
       config = {
@@ -41,16 +42,18 @@
 
       cardlib() {
           wx.navigateTo({
-              url: 'orderDetail'
+              url: 'cardlib'
           })
       }
 
       drawcard() {
           wx.navigateTo({
-              url: 'orderDetail'
+              url: 'drawcard'
           })
       }
 
-      onLoad() {}
+      onLoad() {
+          console.log(cards)
+      }
 }
 </script>

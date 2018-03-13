@@ -1,5 +1,5 @@
 <style lang="scss">
-    @import './styles/weui.scss';
+    @import './weui.scss';
 </style>
 
 <script>
@@ -10,7 +10,11 @@
     export default class extends wepy.app {
         config = {
             pages: [
-                'pages/index'
+                'pages/index',
+                'pages/cardlib',
+                'pages/drawcard',
+                'pages/about',
+                'pages/details'
             ],
             window: {
                 backgroundTextStyle: 'light',
