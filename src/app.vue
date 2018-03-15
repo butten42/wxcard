@@ -24,7 +24,7 @@
         }
 
         globalData = {
-            userInfo: null
+            lib: []
         }
 
         constructor() {

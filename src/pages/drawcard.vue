@@ -4,7 +4,20 @@
         <view class="page__desc">剩余卡包：{{ kabaos }}</view>
     </view>
     <view class="page__bd">
-        {{card}}
+        <view class="title">
+            名字：{{card.name}}
+            阵营：{{card.cardClass}}
+            稀有度：{{card.rarity}}
+            纪年: {{card.set}}
+        </view>
+        <view class="shuzhi">
+            攻: {{card.attack}}
+            费:{{card.cost}}
+            血:{{card.health}}
+        </view>
+        <view wx:if="{{ card.text }}">
+            {{card.text}}
+        </view>
     </view>
     <view class="page__bd page__bd_spacing">
         <button @tap='draw' disabled="{{disable}}" type="primary">抽卡</button>
@@ -37,6 +50,11 @@
                 let random = cards[Math.floor(Math.random() * cards.length)]
                 this.kabaos -= 1
                 this.card = random
+                wx.showToast({
+                    title: this.card.flavor,
+                    icon: 'success',
+                    duration: 1000
+                })
                 console.log(this.card)
             }
         }
