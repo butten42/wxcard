@@ -1,5 +1,9 @@
 module.exports = {
     root: true,
+    globals: {
+        vue: true,
+        wx: true
+    },
     parser: 'babel-eslint',
     parserOptions: {
         sourceType: 'module'

@@ -4,7 +4,6 @@
 
 <script>
     import wepy from 'wepy'
-    import Promise from 'promise-polyfill'
     import 'wepy-async-function'
 
     export default class extends wepy.app {
@@ -24,12 +23,13 @@
             }
         }
 
-        constructor() {
-            super()
-            this.use('promisify')
-            this.use('requestfix')
+        globalData = {
+            userInfo: null
         }
 
-        onLaunch() {}
-    }
+        constructor() {
+            super()
+            this.use('requestfix')
+        }
+}
 </script>

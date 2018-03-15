@@ -1,8 +1,8 @@
 <template>
   <view class="page">
     <view class="page__hd">
-        <view class="page__title">Grid</view>
-        <view class="page__desc">九宫格</view>
+        <view class="page__title">我的牌库</view>
+        <view class="page__desc"></view>
     </view>
     <view class="page__bd">
         <view class="weui-grids">
@@ -25,7 +25,7 @@
             navigationBarTitleText: '无限抽卡'
         }
         data = {
-            grids: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+            grids: ['德鲁伊', '猎人', '牧师', '法师', '圣骑士', '潜行者', '萨满', '术士', '战士']
         }
     }
 </script>

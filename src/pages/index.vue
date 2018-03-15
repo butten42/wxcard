@@ -1,7 +1,7 @@
 <template>
 <view class="page">
     <view class="page__hd">
-        <view class="page__title">你好啊，{{user}}</view>
+        <view class="page__title">你好啊</view>
         <view class="page__desc">欢迎来到xx传说</view>
     </view>
     <view class="page__bd page__bd_spacing">
@@ -27,7 +27,6 @@
 
 <script>
   import wepy from 'wepy'
-  import cards from '../cards'
 
   export default class Index extends wepy.page {
       config = {
@@ -35,9 +34,7 @@
       }
 
       data = {
-          userInfo: {
-              nickName: '加载中...'
-          }
+  
       }
 
       cardlib() {
@@ -53,7 +50,10 @@
       }
 
       onLoad() {
-          console.log(cards)
+
       }
 }
 </script>
+<style lang="scss">
+
+</style>
