@@ -10,9 +10,6 @@
         config = {
             pages: [
                 'pages/index',
-                'pages/cardlib',
-                'pages/drawcard',
-                'pages/about',
                 'pages/details'
             ],
             window: {

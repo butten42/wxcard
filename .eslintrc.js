@@ -33,6 +33,9 @@ module.exports = {
         "global-require": "off",
         "import/no-dynamic-require": 0,
 
+        /*代码规则 @——LVPlum*/
+        "eqeqeq": 0, //禁止 == 或!= 的使用
+
         /*代码样式 @_LVPlum*/
         "indent": ["error", 4],//缩进风格
         "no-mixed-spaces-and-tabs": [2, false],//禁止空格，tab混用
