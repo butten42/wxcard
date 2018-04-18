@@ -75,7 +75,7 @@
     </view>
 
     <view class="page__bd">
-        <button class="weui-btn" type="primary" @tap='pick'>求姻缘</button>
+        <button class="weui-btn" type="primary" @tap='pick' disabled="{{!cando}}">求姻缘</button>
         <button class="weui-btn" type="warn" @tap='developer' wx:if="{{ show }}">我是开发者</button>
     </view>
     <view class="weui-footer weui-footer_fixed-bottom">
@@ -98,8 +98,9 @@
 
       data = {
           isDev: false,
-          code: 343100,
+          cando: false,
           show: false,
+          code: 343100,
           male: {},
           female: {}
       }
@@ -116,27 +117,27 @@
           })
       }
       maleName(e) {
-          this.maile.name = e.detail.value
+          this.male.name = e.detail.value
       }
 
       femaleName(e) {
-          this.femaile.name = e.detail.value
+          this.female.name = e.detail.value
       }
 
       maleDate (e) {
-          this.maile.date = e.detail.value
+          this.male.date = e.detail.value
       }
 
       femaleDate (e) {
-          this.femaile.date = e.detail.value
+          this.female.date = e.detail.value
       }
 
       maleRegion(e) {
-          this.maile.region = e.detail.value
+          this.male.region = e.detail.value
       }
 
       femaleRegion (e) {
-          this.femaile.region = e.detail.value
+          this.female.region = e.detail.value
       }
 
       developer() {
