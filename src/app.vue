@@ -10,7 +10,7 @@
         config = {
             pages: [
                 'pages/index',
-                'pages/details'
+                'pages/detail'
             ],
             window: {
                 backgroundTextStyle: 'light',
@@ -20,9 +20,9 @@
             }
         }
 
-        globalData = {
-            lib: []
-        }
+        // globalData = {
+        //     lib: []
+        // }
 
         constructor() {
             super()

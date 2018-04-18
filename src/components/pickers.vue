@@ -1,50 +1,3 @@
-<style lang="scss">
-    @import '../styles/vars.scss';
-    .dialog_mask {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 10;
-        background: rgba(0, 0, 0, 0.7);
-        display: none;
-    }
-    .dialog_container {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 750rpx;
-        background: white;
-        transform: translateY(150%);
-        transition: all 0.4s ease;
-        z-index: 11;
-        font-size: 32rpx;
-        .dialog_header{
-            width: 100%;
-            background: #EDEDED;
-            display: flex;
-            justify-content:space-between;
-            align-items: center;
-            .dialog_title{
-                color: $text-default
-            }
-            .dialog_button{
-                display: inline-block;
-                text-align: center;
-                font-size: 32rpx;
-                color: $main-color;
-                padding: 30rpx;
-            }
-        }
-    }
-    .dialog_show .dialog_container {
-        transform: translateY(0);
-    }
-    .dialog_show .dialog_mask {
-        display: block;
-    }
-</style>
 <template>
     <view>
         <view class="dialog_mask" @tap="hidePicker"></view>
@@ -107,3 +60,50 @@
         }
     }
 </script>
+<style lang="scss">
+    // @import '../styles/vars.scss';
+    .dialog_mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.7);
+        display: none;
+    }
+    // .dialog_container {
+    //     position: fixed;
+    //     left: 0;
+    //     bottom: 0;
+    //     width: 750rpx;
+    //     background: white;
+    //     transform: translateY(150%);
+    //     transition: all 0.4s ease;
+    //     z-index: 11;
+    //     font-size: 32rpx;
+    //     .dialog_header{
+    //         width: 100%;
+    //         background: #EDEDED;
+    //         display: flex;
+    //         justify-content:space-between;
+    //         align-items: center;
+    //         .dialog_title{
+    //             color: $text-default
+    //         }
+    //         .dialog_button{
+    //             display: inline-block;
+    //             text-align: center;
+    //             font-size: 32rpx;
+    //             color: $main-color;
+    //             padding: 30rpx;
+    //         }
+    //     }
+    // }
+    // .dialog_show .dialog_container {
+    //     transform: translateY(0);
+    // }
+    // .dialog_show .dialog_mask {
+    //     display: block;
+    // }
+</style>
