@@ -1,11 +1,11 @@
 <template>
 <view class="page page__bd_spacing">
-    <view>
+    <view class="block">
         <view class="sex">
             <image src="{{male.src}}" wx:if="{{male.src}}"></image>
             <view class="blue"> 男方信息</view>
         </view>
-        <view class="weui-cell weui-cell_input">
+        <view class="weui-flex">
             <view class="weui-cell__hd">
                 <view class="weui-label">姓名</view>
             </view>
@@ -13,7 +13,7 @@
                 <input class="weui-input" placeholder="请输入姓名" type="number" maxlength="11" value="{{male.name}}" bindinput="maleName"/>
             </view>
         </view>
-        <view class="weui-cell weui-cell_input">
+        <view class="weui-flex">
             <view class="weui-cell__hd">
                 <view class="weui-label">生日</view>
             </view>
@@ -23,26 +23,26 @@
                 </picker>
             </view>
         </view>
-        <view class="weui-cell weui-cell_input">
+        <view class="weui-flex">
             <view class="weui-cell__hd">
                 <view class="weui-label">出生地</view>
             </view>
             <view class="weui-cell__bd">
-                <picker mode="region" bindchange="maleRegion" value="{{region}}" custom-item="{{customItem}}">
+                <picker mode="region" bindchange="maleRegion" value="{{male.region}}" custom-item="{{customItem}}">
                     <view class="picker">
-                    当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
+                    {{region[0]}} {{region[1]}} {{region[2]}}
                     </view>
                 </picker>
             </view>
         </view>
     </view>
 
-    <view>
+    <view class="block">
         <view class="sex">
             <image src="{{female.src}}" wx:if="{{ female.src }}"></image>
             <view class="pink">女方信息</view>
         </view>
-        <view class="weui-cell weui-cell_input">
+        <view class="weui-flex">
             <view class="weui-cell__hd">
                 <view class="weui-label">姓名</view>
             </view>
@@ -50,7 +50,7 @@
                 <input class="weui-input" placeholder="请输入姓名" type="number" maxlength="11" value="{{female.name}}" bindinput="femaleName"/>
             </view>
         </view>
-        <view class="weui-cell weui-cell_input">
+        <view class="weui-flex">
             <view class="weui-cell__hd">
                 <view class="weui-label">生日</view>
             </view>
@@ -60,14 +60,14 @@
                 </picker>
             </view>
         </view>
-        <view class="weui-cell weui-cell_input">
+        <view class="weui-flex">
             <view class="weui-cell__hd">
                 <view class="weui-label">出生地</view>
             </view>
             <view class="weui-cell__bd">
                 <picker mode="region" bindchange="femaleRegion" value="{{region}}" custom-item="{{customItem}}">
                     <view class="picker">
-                    当前选择：{{region[0]}}，{{region[1]}}，{{region[2]}}
+                    {{female.region[0]}} {{female.region[1]}} {{female.region[2]}}
                     </view>
                 </picker>
             </view>
@@ -75,8 +75,8 @@
     </view>
 
     <view class="page__bd">
-        <button class="weui-btn" type="primary" @tap='pick' disabled="{{!cando}}">求姻缘</button>
-        <button class="weui-btn" type="warn" @tap='developer' wx:if="{{ show }}">我是开发者</button>
+        <button class="btn" type="primary" @tap='pick' disabled="{{!cando}}">求姻缘</button>
+        <button class="btn" @tap='developer' wx:if="{{ show }}" :class=" {'orange' : isDev }">我是开发者</button>
     </view>
     <view class="weui-footer weui-footer_fixed-bottom">
         <view class="weui-footer__links">
@@ -98,11 +98,15 @@
 
       data = {
           isDev: false,
+          color: '',
           cando: false,
           show: false,
           code: 343100,
+          region: ['广东省', '广州市', '海珠区'],
           male: {},
-          female: {}
+          female: {
+              region: ['广东省', '广州市', '海珠区']
+          }
       }
 
       cardlib() {
@@ -114,6 +118,13 @@
       pick() {
           wx.navigateTo({
               url: 'detail'
+          })
+      }
+
+      bindRegionChange (e) {
+          console.log('picker发送选择改变，携带值为', e.detail.value)
+          this.setData({
+              region: e.detail.value
           })
       }
       maleName(e) {
@@ -134,14 +145,30 @@
 
       maleRegion(e) {
           this.male.region = e.detail.value
+          console.log('picker发送选择改变，携带值为' + this.male.region)
       }
 
       femaleRegion (e) {
           this.female.region = e.detail.value
+          console.log((this.female.region)[0])
       }
 
       developer() {
           this.isDev = true
+          this.setData({
+              color: 'orange'
+          })
+          console.log(this.isDev)
+          console.log(this.color)
+      }
+
+      password(e) { // 获取钱包密码
+          this.setData({
+              wallets_password: e.detail.value
+          })
+          if (this.data.wallets_password.length == 6) { // 密码长度6位时，自动验证钱包支付结果
+            //   wallet_pay(this)
+          }
       }
 
       onLoad() {
@@ -156,13 +183,34 @@
 }
 </script>
 <style lang="scss">
-.sex {
+button {
+    margin-top: .5rem; 
+}
+.btn {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 85%;
     text-align: center;
 }
+.sex {
+    text-align: center;
+    font-size: .8rem;
+}
+.orange {
+    background: #0366d6;
+    color: paleturquoise;
+}
 .blue {
-    color: royalblue;
+    color: #0366d6;
 }
 .pink {
     color: pink;
+}
+.block {
+    margin-top: .8rem;
+    background-color: white;
+}
+.weui-flex {
+    text-align: center;
 }
 </style>
