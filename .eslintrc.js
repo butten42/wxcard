@@ -35,6 +35,8 @@ module.exports = {
 
         /*代码规则 @——LVPlum*/
         "eqeqeq": 0, //禁止 == 或!= 的使用
+        'camelcase':0,
+
 
         /*代码样式 @_LVPlum*/
         "indent": ["error", 4],//缩进风格
