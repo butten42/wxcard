@@ -279,6 +279,7 @@ button {
 }
 .sex {
     text-align: center;
+    background-color: #f4f4f4;
     font-size: .8rem;
 }
 .orange {
