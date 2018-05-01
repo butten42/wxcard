@@ -20,9 +20,10 @@
             }
         }
 
-        // globalData = {
-        //     lib: []
-        // }
+        globalData = {
+            male: '',
+            female: ''
+        }
 
         constructor() {
             super()
