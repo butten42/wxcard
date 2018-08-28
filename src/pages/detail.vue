@@ -1,15 +1,23 @@
 <template>
 <view class="page">
-    
-    <view class="header">
-        <image src="{{male}}"></image>
-        <image src="{{female}}"></image>
-        <view>{{relation}}</view>
+    <view wx:if='{{payed}}'>
+        <view class="top">
+            <image src="../images/wahaha.png"></image>
+            <image src="../images/wahaha.png"></image>
+        </view>
+        <view class="toast">百年好合</view>
     </view>
-    
-    <view class="poem">
-        <view class="title">诗曰：</view>
-        <view wx:for='{{text}}'>{{item}}</view>
+    <view wx:else>
+        <view class="header">
+            <image src="{{male}}"></image>
+            <image src="{{female}}"></image>
+            <view>{{relation}}</view>
+        </view>
+        
+        <view class="poem">
+            <view class="title">诗曰：</view>
+            <view wx:for='{{text}}'>{{item}}</view>
+        </view>
     </view>
 </view>
 </template>
@@ -17,14 +25,6 @@
 <script>
     import wepy from 'wepy'
     const innerAudioContext = wx.createInnerAudioContext()
-   innerAudioContext.src = 'http://other.web.rd01.sycdn.kuwo.cn/resource/n1/34/41/3763016369.mp3'
-   innerAudioContext.onPlay(() => {
-       console.log('开始播放')
-   })
-   innerAudioContext.onError((res) => {
-       console.log(res.errMsg)
-       console.log(res.errCode)
-   })
 
     let relation= ['有缘无分','情深缘浅','无疾而终']
     let text = [
@@ -40,16 +40,7 @@
             // male:wepy.getStorageSync('male'),
             // female:wepy.getStorageSync('female')
         }
-        audioPlay() {
-           console.log('?')
-           if (!innerAudioContext.paused) {
-               console.log('pause')
-               innerAudioContext.pause()
-           } else {
-               console.log('play')
-               innerAudioContext.play()
-           }
-        }
+
         computed= {
             relation(){
                 let n= Math.floor(Math.random()*relation.length)
@@ -62,11 +53,13 @@
         }
 
         onLoad() {
-            innerAudioContext.play()
             this.setData({
                 male:wepy.getStorageSync('male'),
-                female:wepy.getStorageSync('female')
+                female:wepy.getStorageSync('female'),
+                payed: wepy.getStorageSync('payed')
             })
+            innerAudioContext.src = wepy.getStorageSync('payed') ? 'http://www.170mv.com/kw/other.web.nf01.sycdn.kuwo.cn/resource/n3/98/9/1838900507.mp3' : 'http://other.web.rd01.sycdn.kuwo.cn/resource/n1/34/41/3763016369.mp3'
+            innerAudioContext.play()
         }
 
         onUnload(){
@@ -76,6 +69,20 @@
     }
 </script>
 <style lang="scss" scoped>
+.top {
+    margin-top: 5rem;
+    text-align: center;
+    image {
+        width: 4.4rem;
+        height: 4.4rem;
+    }
+}
+.toast {
+    font-size: 4.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: crimson;
+}
 .header{
     text-align: center;
     font-size: 1.2rem;

@@ -1,5 +1,5 @@
 <template>
-    <view wx:if='{{show}}' class="dev">已进入开发模式</view>
+    <view wx:if='{{payed}}' class="dev">已充值</view>
    <view class="page page__bd_spacing">
       <view class="sex">
           <view class="image line blue" @tap='choose' data-type='male'>
@@ -15,7 +15,8 @@
       </view>
 
       <view class="weui-footer weui-footer_fixed-bottom">
-         <view class="weui-footer__links">
+         <view class="weui-footer__links" wx:if='{{show}}'>
+            <view class="weui-footer__link" @tap="recharge">攒人品</view>
             <view class="weui-footer__link" @tap="develop">我是开发者</view>
          </view>
          <view class="weui-footer__text">Copyright ©butten42 2016-2018 </view>
@@ -34,7 +35,8 @@
         data = {
             male:'',
             female:'',
-            show: false
+            show: false,
+            payed: false,
 
         }
 
@@ -47,6 +49,11 @@
                 this.female = gf
                 wepy.setStorageSync('female', gf)
             }
+        }
+
+        recharge() {
+            this.payed = true
+            wepy.setStorageSync('payed', 1)
         }
         go() {
             this.male=''
@@ -81,13 +88,13 @@
                     
                     setTimeout(() => {
                         this.go()
-                    }, 3000);
+                    }, 1000);
                 }
             }
         }
 
         onLoad(){
-            console.log(1)
+            wepy.setStorageSync('payed', 0)
             wx.showModal({
             content: '这是一个模拟缘分测试的程序。需要你和ta的各一张图片，然后程序会得出你们的缘分评级',
                 showCancel: false,
